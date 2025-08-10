@@ -64,6 +64,7 @@ pipeline {
             junit 'test-results/junit.xml'
         }
     }
+}
 
 
 // args '-u root' // Use root user to avoid permission issues
