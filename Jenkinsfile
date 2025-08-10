@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -41,25 +40,21 @@ pipeline {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.54.0-noble'
                     reuseNode true
-                    
                 }
             }
             steps {
                 sh '''
                     npm install serve
                     node_modules/.bin/serve -s build &
-                    
                     sleep 10
-                    
-                    npx playwright install  # Ensure browsers are installed
+                    npx playwright install
                     npx playwright test
                 '''
             }
-            // sleep 5
-            // post {
-            //     always {
-            //         sh 'pkill -f serve || true'
-            //     }
+            post {
+                always {
+                    // sh 'pkill -f serve || true'
+                }
             }
         }
     }
@@ -69,8 +64,13 @@ pipeline {
             junit 'test-results/junit.xml'
         }
     }
-
+}
 
 // args '-u root' // Use root user to avoid permission issues
 // image 'mcr.microsoft.com/playwright:v1.54.0-noble'
                     // npm install @playwright/test@1.54.0
+                                // sleep 5
+            // post {
+            //     always {
+            //         sh 'pkill -f serve || true'
+            //     }
