@@ -39,7 +39,7 @@ pipeline {
         stage('E2E') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.39.0-noble'
+                    image 'mcr.microsoft.com/playwright:v1.54.0-noble'
                     reuseNode true
                     
                 }
@@ -48,8 +48,10 @@ pipeline {
                 sh '''
                     npm install serve
                     node_modules/.bin/serve -s build &
-                    npx update-browserslist-db@latest
+                    
                     sleep 10
+                    
+                    npx playwright install  # Ensure browsers are installed
                     npx playwright test
                 '''
             }
