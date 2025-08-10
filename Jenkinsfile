@@ -53,6 +53,7 @@ pipeline {
             }
             post {
                 always {
+                  echo 'E2E tests completed'
                     // sh 'pkill -f serve || true'
                 }
             }
