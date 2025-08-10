@@ -30,9 +30,15 @@ pipeline {
             steps {
                 sh '''
                     test -f build/index.html
-                    npm test --coverage -- --watchAll=false
+                    npm test 
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            junit 'test-results.xml'
         }
     }
 }
