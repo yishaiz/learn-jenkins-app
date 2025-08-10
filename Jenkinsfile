@@ -64,7 +64,7 @@ pipeline {
             junit 'test-results/junit.xml'
         }
     }
-}
+
 
 // args '-u root' // Use root user to avoid permission issues
 // image 'mcr.microsoft.com/playwright:v1.54.0-noble'
