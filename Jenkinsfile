@@ -48,6 +48,7 @@ pipeline {
                 sh '''
                     npm install serve
                     node_modules/.bin/serve -s build &
+                    npx update-browserslist-db@latest
                     sleep 10
                     npx playwright test
                 '''
