@@ -41,12 +41,12 @@ pipeline {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.54.0-noble'
                     reuseNode true
-                    args '-u root' // Use root user to avoid permission issues
+                    
                 }
             }
             steps {
                 sh '''
-                    npm install -g serve
+                    npm install serve
                     serve -s build &
                     npx playwright test
                 '''
@@ -65,3 +65,6 @@ pipeline {
             junit 'test-results/junit.xml'
         }
     }
+
+
+// args '-u root' // Use root user to avoid permission issues
