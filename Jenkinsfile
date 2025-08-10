@@ -39,7 +39,7 @@ pipeline {
         stage('E2E') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.54.0-noble'
+                    image 'mcr.microsoft.com/playwright:v1.39.0-noble'
                     reuseNode true
                     
                 }
@@ -49,8 +49,6 @@ pipeline {
                     npm install serve
                     node_modules/.bin/serve -s build &
                     sleep 10
-                    
-                    npm install @playwright/test@1.54.0
                     npx playwright test
                 '''
             }
@@ -71,3 +69,5 @@ pipeline {
 
 
 // args '-u root' // Use root user to avoid permission issues
+// image 'mcr.microsoft.com/playwright:v1.54.0-noble'
+                    // npm install @playwright/test@1.54.0
